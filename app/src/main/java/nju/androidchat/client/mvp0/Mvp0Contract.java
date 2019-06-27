@@ -16,8 +16,6 @@ public interface Mvp0Contract {
 
         String getUsername();
 
-        List<ClientMessage> findClientMessages();
-
         //撤回消息mvp0不实现
         void recallMessage(int index0);
     }

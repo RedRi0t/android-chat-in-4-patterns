@@ -37,8 +37,6 @@ import nju.androidchat.client.component.OnRecallMessageRequested;
 public class Mvp0TalkActivity extends AppCompatActivity implements Mvp0Contract.View, TextView.OnEditorActionListener, OnRecallMessageRequested {
     private Mvp0Contract.Presenter presenter;
 
-    //url和图片
-    private HashMap<String, Bitmap> picMap=new HashMap<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,26 +67,13 @@ public class Mvp0TalkActivity extends AppCompatActivity implements Mvp0Contract.
                         String text = String.format("%s", message.getMessage());
                         // 如果是自己发的，增加ItemTextSend
 
-                        boolean addPic=false;
-                        if(isPic(text)){
-                            if(picMap.containsKey(text)) addPic=true;
-                            else {
-                                askPic(text);
-                            }
-                        }
-
                         if (message.getSenderUsername().equals(this.presenter.getUsername())) {
-                            if(addPic){
-                                content.addView(new ItemTextSend(this,picMap.get(text) ,text, message.getMessageId(), this));
-                            }else {
                                 content.addView(new ItemTextSend(this, text, message.getMessageId(), this));
-                            }
+
                         } else {
-                            if (addPic) {
-                                content.addView(new ItemTextReceive(this, this.picMap.get(text),text, message.getMessageId()));
-                            } else {
+
                                 content.addView(new ItemTextReceive(this, text, message.getMessageId()));
-                            }
+
                         }
                     }
 
@@ -113,20 +98,6 @@ public class Mvp0TalkActivity extends AppCompatActivity implements Mvp0Contract.
         }).start();
     }
 
-    //图片判断
-    private boolean isPic(String str){
-        Pattern pattern=Pattern.compile("(!\\[[\\s\\S]*]\\{)([\\s\\S]*.(png|jpg))\\}");
-        Matcher matcher=pattern.matcher(str);
-        return matcher.matches();
-    }
-
-    //提取图片Url
-    private String findUrl(String str){
-        Pattern pattern=Pattern.compile("(!\\[[\\s\\S]*]\\{)([\\s\\S]*.(png|jpg))\\}");
-        Matcher matcher=pattern.matcher(str);
-        matcher.matches();
-        return matcher.group(2);
-    }
 
 
     @Override

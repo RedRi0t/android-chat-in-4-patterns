@@ -21,10 +21,6 @@ public class Mvp0TalkPresenter implements Mvp0Contract.Presenter {
         refreshMessageList(clientMessage);
     }
 
-    @Override
-    public List<ClientMessage> findClientMessages() {
-        return clientMessages;
-    }
 
     @Override
     public void receiveMessage(ClientMessage clientMessage) {
