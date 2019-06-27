@@ -13,6 +13,7 @@ import java.util.Properties;
 
 import lombok.experimental.UtilityClass;
 import lombok.extern.java.Log;
+import nju.androidchat.client.mvp0.Mvp0TalkActivity;
 import nju.androidchat.client.mvvm0.Mvvm0TalkActivity;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
@@ -22,9 +23,9 @@ import static android.content.Context.INPUT_METHOD_SERVICE;
 public class Utils {
     Properties props = new Properties();
     String CHAT_ACTIVITY_KEY = "chat_activity";
-    Class<?> CHAT_ACTIVITY = Mvvm0TalkActivity.class;
+    Class<?> CHAT_ACTIVITY = Mvp0TalkActivity.class;
 
-    public void jumpTo(AppCompatActivity activity, Class<?> clazz) {
+    public static void jumpTo(AppCompatActivity activity, Class<?> clazz) {
         Intent intent = new Intent(activity.getBaseContext(), clazz);
         activity.startActivity(intent);
     }
@@ -34,6 +35,7 @@ public class Utils {
     }
 
     public void jumpToChat(AppCompatActivity activity) {
+        System.out.println("yrz jump");
         jumpTo(activity, CHAT_ACTIVITY);
     }
 

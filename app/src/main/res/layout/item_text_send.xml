@@ -48,6 +48,16 @@
                 android:textColor="#333333"
                 android:textSize="14sp" />
 
+            <ImageView
+                android:id="@+id/image_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/message_text_send"
+                android:text="你好"
+                android:textColor="#333333"
+                android:textSize="14sp"
+                android:visibility="gone"/>
+
         </LinearLayout>
     </RelativeLayout>
 
